@@ -4,18 +4,33 @@
  */
 package main.java.bs.GUI;
 
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+
+
 /**
  *
  * @author LENOVO
  */
 public class ViewReport extends javax.swing.JFrame {
 
+    //private javax.swing.JTable jTable1;
+    private DefaultTableModel tableModel;
     /**
      * Creates new form ViewReport
      */
     public ViewReport() {
         initComponents();
+        
+        tableModel = new DefaultTableModel(
+            new Object[][]{},
+            new String[]{"Units", "Rate", "Cost"}
+        );
+        jTable1.setModel(tableModel);
     }
+
+   
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -34,10 +49,10 @@ public class ViewReport extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jTextField2 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jEditorPane1 = new javax.swing.JEditorPane();
         jMonthChooser1 = new com.toedter.calendar.JMonthChooser();
         jLabel5 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -77,11 +92,36 @@ public class ViewReport extends javax.swing.JFrame {
             }
         });
 
-        jScrollPane1.setViewportView(jEditorPane1);
-
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(51, 153, 0));
         jLabel5.setText("Month");
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "Units", "Rate", "Cost"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.Double.class, java.lang.Double.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane2.setViewportView(jTable1);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -93,25 +133,26 @@ public class ViewReport extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addGap(256, 256, 256))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel4)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel5))
-                                .addGap(38, 38, 38)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel3))
+                                .addGap(28, 28, 28)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jButton1)
+                                    .addComponent(jMonthChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(jTextField1)
-                                        .addComponent(jTextField2)
-                                        .addComponent(jMonthChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE)))
-                                .addGap(61, 61, 61))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 359, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE)
+                                        .addComponent(jTextField2))
+                                    .addComponent(jButton1))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 472, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 391, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())))
         );
         jPanel1Layout.setVerticalGroup(
@@ -119,12 +160,9 @@ public class ViewReport extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(34, 34, 34)
                 .addComponent(jLabel2)
-                .addGap(52, 52, 52)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(3, 3, 3)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 371, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(35, 35, 35)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -137,11 +175,15 @@ public class ViewReport extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(jMonthChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jLabel5))
-                        .addGap(18, 18, 18)
+                        .addGap(28, 28, 28)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(72, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(16, 16, 16))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(25, 25, 25))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -167,15 +209,23 @@ public class ViewReport extends javax.swing.JFrame {
         int endingReading = Integer.parseInt(jTextField2.getText());
         int units = endingReading - startingReading;
 
-        String detailedCost = calculateDetailedCost(units);
+       // String detailedCost = calculateDetailedCost(units);
         
-        jEditorPane1.setText(detailedCost);
-        jEditorPane1.setEditable(false);
+       // jEditorPane1.setText(detailedCost);
+        //jEditorPane1.setEditable(false);
        // javax.swing.JOptionPane.showMessageDialog(this, detailedCost);
+       
+        List<String[]> detailedCost = calculateDetailedCost(units);
+        
+        tableModel.setRowCount(0);
+        
+        for (String[] row : detailedCost) {
+        tableModel.addRow(row);
+    }
     }//GEN-LAST:event_jButton1ActionPerformed
- public static String calculateDetailedCost(int units) {
-        StringBuilder detailedCost = new StringBuilder();
-        double totalCost = 0;
+ public static List<String[]> calculateDetailedCost(int units) {
+    List<String[]> details = new ArrayList<>();
+    double totalCost = 0;
         
         // Define rates for each range
         double rate1 = 7.85; 
@@ -186,34 +236,42 @@ public class ViewReport extends javax.swing.JFrame {
         
         // Calculate costs for each range and append to detailedCost
         if (units > 192) {
-            detailedCost.append((units - 192) + " units at * Rs. " + rate5 + " per unit : "+(units - 192)*rate5+" /=\n");
-            totalCost += (units - 192) * rate5;
-            units = 192;
-        }
-        if (units > 128) {
-            detailedCost.append((units - 128) + " units at * Rs. " + rate4 + " per unit : "+(units - 128)*rate4+" /=\n");
-            totalCost += (units - 128) * rate4;
-            units = 128;
-        }
-        if (units > 96) {
-            detailedCost.append((units - 96) + " units at * Rs. " + rate3 + " per unit : "+(units - 96)*rate3+" /=\n");
-            totalCost += (units - 96) * rate3;
-            units = 96;
-        }
-        if (units > 64) {
-            detailedCost.append((units - 64) + " units at * Rs. " + rate2 + " per unit : "+(units - 64)*rate2+" /=\n");
-            totalCost += (units - 64) * rate2;
-            units = 64;
-        }
-        if (units > 0) {
-            detailedCost.append(units + " units at * Rs. " + rate1 + " per unit : "+units*rate1+" /=\n");
-            totalCost += units * rate1;
-        }
-
-        detailedCost.append("\n"+"Total cost: Rs. " + totalCost+" /=");
-        
-        return detailedCost.toString();
+        int count = units - 192;
+        double cost = count * rate5;
+        details.add(new String[]{String.valueOf(count), String.valueOf(rate5), String.valueOf(cost)});
+        totalCost += cost;
+        units = 192;
     }
+    if (units > 128) {
+        int count = units - 128;
+        double cost = count * rate4;
+        details.add(new String[]{String.valueOf(count), String.valueOf(rate4), String.valueOf(cost)});
+        totalCost += cost;
+        units = 128;
+    }
+    if (units > 96) {
+        int count = units - 96;
+        double cost = count * rate3;
+        details.add(new String[]{String.valueOf(count), String.valueOf(rate3), String.valueOf(cost)});
+        totalCost += cost;
+        units = 96;
+    }
+    if (units > 64) {
+        int count = units - 64;
+        double cost = count * rate2;
+        details.add(new String[]{String.valueOf(count), String.valueOf(rate2), String.valueOf(cost)});
+        totalCost += cost;
+        units = 64;
+    }
+    if (units > 0) {
+        double cost = units * rate1;
+        details.add(new String[]{String.valueOf(units), String.valueOf(rate1), String.valueOf(cost)});
+        totalCost += cost;
+    }
+
+    details.add(new String[]{"Total", "", String.valueOf(totalCost)});
+    return details;
+}
         /**
      * @param args the command line arguments
      */
@@ -251,7 +309,6 @@ public class ViewReport extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JEditorPane jEditorPane1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -259,7 +316,8 @@ public class ViewReport extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private com.toedter.calendar.JMonthChooser jMonthChooser1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     // End of variables declaration//GEN-END:variables
