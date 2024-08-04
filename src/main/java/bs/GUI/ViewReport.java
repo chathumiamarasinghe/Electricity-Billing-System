@@ -234,6 +234,8 @@ public class ViewReport extends javax.swing.JFrame {
         double rate4 = 32.00; 
         double rate5 = 45.00; 
         
+        double fixedcost = 540.00;
+        
         // Calculate costs for each range and append to detailedCost
         if (units > 192) {
         int count = units - 192;
@@ -269,7 +271,7 @@ public class ViewReport extends javax.swing.JFrame {
         totalCost += cost;
     }
 
-    details.add(new String[]{"Total", "", String.valueOf(totalCost)});
+    details.add(new String[]{"Total + fixedcost ", "", String.valueOf(totalCost+fixedcost)});
     return details;
 }
         /**
