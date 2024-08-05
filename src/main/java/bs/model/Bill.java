@@ -32,6 +32,10 @@ public class Bill {
         this.units_consumed=units_consumed;
         this.total_cost=total_cost;
     }
+
+    public Bill() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
     
     public int getBill_id() {
         return bill_id;
