@@ -21,5 +21,5 @@ public class CustomerController {
         customer.setEmail(email);
         customer.setPassword(password);
         customerDAO.insertCustomer(customer);
-    }
+    }   
 }
