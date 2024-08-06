@@ -5,11 +5,13 @@
 package main.java.bs.GUI;
 
 import java.awt.print.PrinterException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+import javax.swing.JTextPane;
 import javax.swing.table.DefaultTableModel;
 import main.java.bs.controller.BillController;
 import main.java.bs.controller.CustomerController;
@@ -365,25 +367,48 @@ public class ViewReport extends javax.swing.JFrame {
 }
  
  private void printReport() {
-        JTextArea textArea = new JTextArea();
-        textArea.setText("ELECTRICITY BILL REPORT\n\n");
+       JTextPane textPane = new JTextPane();
+    textPane.setContentType("text/html");
 
-        textArea.append("Starting Meter Reading: " + jTextField1.getText() + "\n");
-        textArea.append("Ending Meter Reading: " + jTextField2.getText() + "\n\n");
+    // Format the dates
+    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+    String startDate = dateFormat.format(jDateChooser1.getDate());
+    String endDate = dateFormat.format(jDateChooser2.getDate());
 
-        textArea.append("Units\tRate\tCost\n");
-        for (int i = 0; i < tableModel.getRowCount(); i++) {
-            textArea.append(tableModel.getValueAt(i, 0) + "\t" + tableModel.getValueAt(i, 1) + "\t" + tableModel.getValueAt(i, 2) + "\n");
+    StringBuilder sb = new StringBuilder();
+    sb.append("<html><body>");
+    
+    // Add the heading with the date range
+    sb.append("<h2 style='text-align: center;'>Electricity Bill from ").append(startDate).append(" to ").append(endDate).append("</h2>").append("\n");
+    
+    sb.append("<table border='1' style='width:100%; border-collapse: collapse;'>");
+    sb.append("<tr><th>Units</th><th>Rate</th><th>Cost</th></tr>");
+
+    for (int i = 0; i < tableModel.getRowCount(); i++) {
+        sb.append("<tr>");
+        for (int j = 0; j < tableModel.getColumnCount(); j++) {
+            sb.append("<td>").append(tableModel.getValueAt(i, j)).append("</td>");
         }
+        sb.append("</tr>");
+    }
 
-        textArea.append("\n");
+    // Add double underline for the total cost row
+    sb.append("<tr><td colspan='2' style='border-bottom: double;'>Total + Fixed Cost</td>");
+    sb.append("<td style='border-bottom: double;'>").append(tableModel.getValueAt(tableModel.getRowCount() - 1, 2)).append("</td></tr>");
 
-        JScrollPane scrollPane = new JScrollPane(textArea);
-        try {
-            textArea.print();
-        } catch (PrinterException ex) {
-            JOptionPane.showMessageDialog(this, "Error printing: " + ex.getMessage());
+    sb.append("</table></body></html>");
+    textPane.setText(sb.toString());
+
+    try {
+        boolean printed = textPane.print();
+        if (printed) {
+            JOptionPane.showMessageDialog(null, "Report printed successfully!");
+        } else {
+            JOptionPane.showMessageDialog(null, "Printing canceled by user.");
         }
+    } catch (PrinterException ex) {
+        JOptionPane.showMessageDialog(null, "Error printing: " + ex.getMessage());
+    }
     }
         /**
      * @param args the command line arguments
