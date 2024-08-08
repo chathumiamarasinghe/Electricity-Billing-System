@@ -22,8 +22,7 @@ public class BillController {
         
         this.BillDAO = new BillDAO();
     }   
-    public void insertBill(int starting_meter_reading, int ending_meter_reading, LocalDateTime start_date, LocalDateTime end_date, 
-            int units_consumed)
+    public void insertBill(int starting_meter_reading, int ending_meter_reading, LocalDateTime start_date, LocalDateTime end_date, int units_consumed)
     {
         
         Bill bill = new Bill();
