@@ -6,6 +6,7 @@ package main.java.bs.controller;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import main.java.bs.dao.BillDAO;
 import main.java.bs.interfaces.IBillDAO;
@@ -22,7 +23,7 @@ public class BillController {
         
         this.BillDAO = new BillDAO();
     }   
-    public void insertBill(int starting_meter_reading, int ending_meter_reading, LocalDateTime start_date, LocalDateTime end_date, int units_consumed)
+    public void insertBill(int starting_meter_reading, int ending_meter_reading, Date start_date, Date end_date, int units_consumed)
     {
         
         Bill bill = new Bill();

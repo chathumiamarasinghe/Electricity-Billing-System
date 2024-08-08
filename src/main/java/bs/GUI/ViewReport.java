@@ -15,7 +15,8 @@ import javax.swing.JTextPane;
 import javax.swing.table.DefaultTableModel;
 import main.java.bs.controller.BillController;
 import main.java.bs.controller.CustomerController;
-
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 
 
 /**
@@ -292,8 +293,7 @@ public class ViewReport extends javax.swing.JFrame {
         
         if (jTextField1.getText() != null && !jTextField1.getText().isEmpty() && jTextField2.getText() != null && !jTextField2.getText().isEmpty() &&
          start_date != null && end_date != null) {
-        // Display success message and clear fields
-        JOptionPane.showMessageDialog(this, "Sign up successful! You can now log in.");
+        
         jTextField1.setText("");
         jTextField2.setText("");
         jDateChooser1.setDate(null);

@@ -5,6 +5,7 @@
 package main.java.bs.model;
 
 import java.time.LocalDateTime;
+import java.util.Date;
 
 /**
  *
@@ -15,13 +16,13 @@ public class Bill {
     private int customer_id;
     private int starting_meter_reading;
     private int ending_meter_reading;
-    private LocalDateTime start_date;
-    private LocalDateTime end_date;
+    private Date start_date;
+    private Date end_date;
     private int units_consumed;
     private double total_cost;
     
     public Bill(int bill_id, int customer_id, int starting_meter_reading, int ending_meter_reading, 
-                LocalDateTime start_date, LocalDateTime end_date, int units_consumed, double total_cost){
+                Date start_date, Date end_date, int units_consumed, double total_cost){
     
         this.bill_id=bill_id;
         this.customer_id=customer_id;
@@ -69,21 +70,21 @@ public class Bill {
         this.ending_meter_reading = ending_meter_reading;
     }
 
-    public LocalDateTime getstart_date() {
+    public Date getstart_date() {
         return start_date;
     }
 
-    public void setstart_date(LocalDateTime start_date) {
+    public void setstart_date(Date start_date) {
         this.start_date = start_date;
     }
 
     
 
-    public LocalDateTime getend_date() {
+    public Date getend_date() {
         return end_date;
     }
 
-    public void setend_date(LocalDateTime end_date) {
+    public void setend_date(Date end_date) {
         this.end_date = end_date;
     }
 
