@@ -17,6 +17,7 @@ import main.java.bs.controller.BillController;
 import main.java.bs.controller.CustomerController;
 
 
+
 /**
  *
  * @author LENOVO
@@ -284,6 +285,25 @@ public class ViewReport extends javax.swing.JFrame {
         java.util.Date start_date = jDateChooser1.getDate();
         java.util.Date end_date = jDateChooser2.getDate();
         int units = ending_reading - starting_reading;
+        
+        
+        
+       // controller.insertBill(starting_reading, ending_reading, start_date, end_date, units);
+        
+        if (jTextField1.getText() != null && !jTextField1.getText().isEmpty() && jTextField2.getText() != null && !jTextField2.getText().isEmpty() &&
+         start_date != null && end_date != null) {
+        // Display success message and clear fields
+        JOptionPane.showMessageDialog(this, "Sign up successful! You can now log in.");
+        jTextField1.setText("");
+        jTextField2.setText("");
+        jDateChooser1.setDate(null);
+        jDateChooser2.setDate(null);
+                
+       // jPasswordField1.setText("");
+    } else {
+        // Display error message if any of the fields are empty
+        JOptionPane.showMessageDialog(this, "All fields are required. Please fill in all the details.");
+    }
 
        // String detailedCost = calculateDetailedCost(units);
         
